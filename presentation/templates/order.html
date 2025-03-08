@@ -1,0 +1,30 @@
+<!-- presentation/templates/order.html -->
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Your Order</h2>
+<div class="row">
+  <div class="col-md-8">
+    <ul class="list-group animate-fadein">
+      {% for item, qty in order_summary.items() %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>{{ item }}</strong> (x{{ qty }})
+        <form action="{{ url_for('screens_bp.remove_item') }}" method="POST">
+          <input type="hidden" name="item" value="{{ item }}">
+          <button type="submit" class="btn btn-danger btn-sm animate-bounce">Remove One</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center shadow">
+      <div class="card-body">
+        <h4 class="card-title">Total</h4>
+        <p class="display-6">${{ "%.2f"|format(total) }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

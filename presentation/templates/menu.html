@@ -1,0 +1,25 @@
+<!-- presentation/templates/menu.html -->
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Menu</h2>
+<div class="row">
+  {% for item, price in menu_items.items() %}
+  <div class="col-md-3 mb-3">
+    <div class="card text-center shadow animate-fadein">
+      <div class="card-body">
+        <h5 class="card-title">{{ item }}</h5>
+        <p class="card-text">${{ "%.2f"|format(price) }}</p>
+        <form action="{{ url_for('screens_bp.add_item') }}" method="POST">
+          <input type="hidden" name="item" value="{{ item }}">
+          <button type="submit" class="btn btn-success btn-sm animate-bounce">
+            Add to Order
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
