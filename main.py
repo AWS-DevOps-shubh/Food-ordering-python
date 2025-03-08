@@ -4,7 +4,10 @@ from business.food_ordering_system import FoodOrderingSystem
 from presentation.screens import screens_bp
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, 
+                template_folder="presentation/templates", 
+                static_folder="presentation/static")
+    
 
     # Instantiate the business logic
     food_system = FoodOrderingSystem()
@@ -19,4 +22,4 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
