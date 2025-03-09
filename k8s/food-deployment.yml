@@ -1,0 +1,26 @@
+apiVersion: apps/v1                   # apps: is group and deployment is under apps group
+kind: Deployment
+metadata:
+  name: food-deployment
+  namespace: production 
+  labels:                            # deployment label to select service ti identify
+    app: food-oredering-app
+    
+spec:                                # deployment specification
+  replicas: 2
+  selector:
+    matchLabels:
+      app: food-oredering-app
+      
+  template:
+    metadata:
+      name: food-pod
+      namespace: production
+      labels:
+        app: food-oredering-app
+    spec:
+      containers:
+      - name: fina-food-order
+        image: 
+        ports:
+        - containerPort: 5000
