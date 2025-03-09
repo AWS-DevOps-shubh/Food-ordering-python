@@ -21,6 +21,6 @@ spec:                                # deployment specification
     spec:
       containers:
       - name: fina-food-order
-        image: 
+        image: food-image-name     #from github
         ports:
         - containerPort: 5000
